@@ -1,39 +1,73 @@
-// Gets a random number from my array
+let player = 0
+let cpu = 0
+let draw = 0
+
+// this function creates a loop 5 times
+function game () {
+    for (let i = 0; i < 5; i++) {
+        playround(); 
+    }
+}
+
+// this function gets me a random choice from CPU
 function getComputerChoice() {
     let cpuOptions = ["rock", "scissors", "paper"]
     var cpuChoice = cpuOptions[Math.floor(Math.random() * cpuOptions.length)];
     return cpuChoice;
 }
 
-// send the function to a variable so easy to use
-var computerSelection = getComputerChoice();
-
-var playerChoice = prompt("Choose rock, scissors or paper")
-console.log(playerChoice)
-
-console.log(playerChoice, computerSelection)
-
-function playround(playerChoice, computerSelection) {
-    let outcome;
-
+// main function to get winner of function 
+   const playround = ()  => {
+     // gets a better variable for computer choice
+     var computerSelection = getComputerChoice();
+     // get me player choice
+     var playerChoice = prompt("Choose rock, scissors or paper").toLowerCase()
+     // if else loop to get results var
+     // run a ALERT for each win or lose
     if (playerChoice === computerSelection) {
-        outcome = "draw"
+        alert("draw")
+        result = draw++
      }  else if (playerChoice === "scissors" && computerSelection === "paper" ) {
-        outcome = "player wins";
+        alert("player wins")
+        result = player++
      }  else if (playerChoice === "scissors" && computerSelection === "rock") {
-        outcome = "You lose";
+        alert("cpu wins")
+        result = cpu++
      }  else if (playerChoice === "paper" && computerSelection === "scissors" ) {
-        outcome = "you lose";
+        alert("cpu wins")
+        result =  cpu++
      }  else if (playerChoice === "paper" && computerSelection === "rock") {
-        outcome = "You win";
+        alert("player wins")
+        result =  player++
      }  else if (playerChoice === "rock" && computerSelection === "paper" ) {
-        outcome = "you lose";
+        alert("cpu wins")
+        result =  cpu++
      }  else if (playerChoice === "rock" && computerSelection === "scissors") {
-        outcome = "You win";
+        alert("player wins")
+        result =  player++
      }  else {
         (playerChoice !== "rock" || "scissors" || "paper") 
-        outcome = "Not a selection";
+        result =  "Not a selection";
      }
-        console.log(outcome)
+     // return the winner to function
+     return result;
     }
-playround(playerChoice, computerSelection)
+
+// function to track who won and game score
+function gameScore(){
+    if (cpu > player){
+        return "cpu wins"
+    } else if (cpu < player) {
+        return "player wins"
+    }
+    return `cpu score was ${cpu} and player score was ${player}`
+{
+
+}}
+
+// call the game
+game()
+// print the scores
+console.log("cpu: ",cpu, "player: ", player, "draw: ", draw)
+// print the winner
+console.log(gameScore())
