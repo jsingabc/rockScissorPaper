@@ -1,0 +1,11 @@
+.container {
+    border: 3px solid black;
+    height: 770px;
+}
+
+button {
+    height: 50px;
+    width: 100px;
+    border-radius: 30px;
+    margin-right: 15px;
+}
