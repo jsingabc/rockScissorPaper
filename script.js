@@ -1,7 +1,35 @@
+//title top of page
+var titleBox = document.createElement('div');
+titleBox.setAttribute('id', 'titleBox');
+document.body.appendChild(titleBox)
+document.getElementById("titleBox").style.backgroundColor = "blue";
+document.getElementById("titleBox").style.color = "white";
+
+//h1 in the title box
+var headOne = document.createElement('h1');
+headOne.setAttribute('id', 'headOne');
+headOne.textContent = "Rock Scissors Paper";
+titleBox.appendChild(headOne)
+
+//image container
+var imageContainer = document.createElement('div');
+imageContainer.setAttribute('id', 'imageContainer');
+document.body.appendChild(imageContainer);
+
+//image details
+var imageDiv = document.createElement('img');
+imageDiv.setAttribute('id', 'imageDiv');
+imageDiv.setAttribute("src", "photo.jpg")
+imageDiv.setAttribute("height", "400");
+imageDiv.setAttribute("width", "700")
+imageDiv.setAttribute("alt", "image");
+imageContainer.appendChild(imageDiv);
+
+
+//variable for game
 let player = 0
 let cpu = 0
 let draw = 0
-
 
 // this function creates a loop 5 times
 /*function game () {
@@ -17,17 +45,13 @@ function getComputerChoice() {
     var cpuChoice = cpuOptions[Math.floor(Math.random() * cpuOptions.length)];
     return cpuChoice;
 }
-
+// variable to get cpu choice
 var computerSelection = getComputerChoice();
 
    // main function to get winner of function 
 const playround = (computerSelection, playerChoice)  => {
      
-     //gets variable for computer choice
-     //var computerSelection = getComputerChoice();
-      
-     // if else loop to get results var
-     // run a ALERT for each win or lose
+     // run a ALERTs for each win or lose
 
       console.log(playerChoice);
       console.log(computerSelection);
@@ -65,46 +89,38 @@ const playround = (computerSelection, playerChoice)  => {
 
 // function to track who won and game score
 function gameScore(){
-    if (cpu > player){
-      return "cpu wins"
-    } else if (cpu < player) {
-          return "player wins"
+    if (cpu === 3){
+      alert("cpu wins, game over")
+      return location.reload();
+    } else if (player === 3) {
+      alert("player wins, game over")
+          return location.reload();
     }
     return `cpu score was ${cpu} and player score was ${player}`
 {
 
-}}
+   }
+}
 
+//update then score
 function updateScore(){
+   //run game score to check if 3 is reached
    resultDiv.textContent = gameScore()
+   //add score count to the bottom of screen
    resultDiv.textContent = ` cpu: ${cpu} player: ${player} draw: ${draw} `
    document.body.appendChild(resultDiv)
-
-   if (player === 3) {
-      return "player wins game over";
-   }
-   else if (cpu === 3) {
-      return " cpu wins game over";
-     }
    }
 
-
-// call the game
-//game()
-
-// print the scores
-//console.log("cpu: ",cpu, "player: ", player, "draw: ", draw)
-
-// print the winner
-//console.log(gameScore())
-//***********************************
+//***************************************************
 
 
 //*****************BUTTONS***************************
 //container for the buttons
 var container = document.createElement('div');
-container.className = "container";
+container.setAttribute('id', 'container');
 document.body.appendChild(container);
+document.getElementById("container").style.backgroundColor = "blue";
+
 
 //rock button
 var rock = document.createElement('button');
@@ -112,15 +128,15 @@ rock.className = "rock";
 rock.textContent = "Rock"
 container.appendChild(rock);
 
+//rock button listener
 rock.addEventListener('click', (e) => {
       var playerChoice = "rock";
+      var computerSelection = getComputerChoice();
       playround(computerSelection, playerChoice); 
-      
+
       e.stopPropagation()
       console.log(e)
-      console.log(gameScore());
       updateScore()
-
 });
 
 //scissors button
@@ -129,16 +145,14 @@ scissors.className = "scissors";
 scissors.textContent = "Scissors"
 container.appendChild(scissors);
 
+//scissors button listener
 scissors.addEventListener('click', (e) => {
    var playerChoice = "scissors";
-   playround(computerSelection, playerChoice); 
-   gameScore();
-   document.body.appendChild = gameScore()
-   
+   var computerSelection = getComputerChoice();
+   playround(computerSelection, playerChoice);   
 
    e.stopPropagation()
    console.log(e)
-   console.log(gameScore());
    updateScore()
 });
 
@@ -148,21 +162,20 @@ paper.className = "paper";
 paper.textContent = "Paper"
 container.appendChild(paper);
 
+//paper button listener
 paper.addEventListener('click', (e) => {
    var playerChoice = "paper";
+   var computerSelection = getComputerChoice();
    playround(computerSelection, playerChoice); 
-   gameScore();
 
    e.stopPropagation()
    console.log(e)
-   console.log(gameScore());
    updateScore()
 });
 
-
+//create a result div, give class, append to body
 var resultDiv = document.createElement('div');
 resultDiv.className = "resultDiv";
-//resultDiv.textContent = gameScore();
-//resultDiv.textContent = `cpu: ${cpu} player: ${player} draw: ${draw} `
 document.body.appendChild(resultDiv);
+
 
